@@ -10,7 +10,7 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 if DATABASE_URL:
     url = urlparse(DATABASE_URL)
     conn = psycopg2.connect(
-        database=url.username,  # Skip the leading '/'
+        database=url.path[1:],  # Skip the leading '/'
         user=url.username,
         password=url.password,
         host=url.hostname,
